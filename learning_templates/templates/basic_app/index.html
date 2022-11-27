@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 {% extends 'basic_app/base.html' %}
+{% load my_extras %} <!-- loading the custom Template Filters using filename -->
     {% block body_block %}
     <h1>WELCOME TO INDEX</h1>
     <h1>This is index.html page showing!</h1>
+    <!-- Template Filters usage -->
+    <h1>{{ text|upper }}</h1> <!-- Template Filter 'upper' to convert the 'text' string to uppercase -->
+    <h1>{{ text|cutit:"hello" }}</h1> <!-- Custom Template Filter 'cut' to remove sub-strings from the 'text' string -->
+    <h1>{{ number|add:"99" }}</h1> <!-- Template Filter to add a number(99) to 'number' -->
     {% endblock body_block %}

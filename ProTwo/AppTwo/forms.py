@@ -19,6 +19,7 @@
 # Edit 'views.py' to show the form
 # Figure out how to '.save()' the form data into model
 # Verify that the model is admin registered.
+# THE MODEL HAS TO BEE MIGRATED FOR MODELFORM CLASS TO WORK PROPERLY AND SAVE CONTENT FROM THE FORM AS A MODEL INSTANCE
 
 from django import forms
 from AppTwo.models import User

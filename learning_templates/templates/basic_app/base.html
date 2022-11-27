@@ -10,6 +10,22 @@ across our entire Website. -->
 
 <!-- REFER: https://docs.djangoproject.com/en/4.1/ref/templates/language/#template-inheritance -->
 
+
+<!-- TEMPLATE FILTERING: -->
+<!-- REFER: https://docs.djangoproject.com/en/4.1/ref/templates/builtins/#filter -->
+<!-- when you want to use some information from your model across various views/pages after making slight
+edits to the information before injecting it (string operations or arithmetic), you can use Template Filtering -->
+<!-- Django's template filters allow you to effect the injection before displaying to the user -->
+<!-- The general form of a template filter is: \{\{ value | filter:"parameter" \}\} -->
+<!-- Not all Filters take in parameters and many of these filters are based off of common python built-in functions -->
+<!-- We can also create our own custom Template Filters -->
+<!-- REFER: https://docs.djangoproject.com/en/4.1/howto/custom-template-tags/#writing-custom-template-filters -->
+<!-- To create custom Template Filters: -->
+<!-- First create a directory called 'templatetags' within the application's directory -->
+<!-- add an '__init__.py' empty file so python will treat this directory as a module -->
+<!-- Then, create a python file with your filter function - 'my_extras.py' in this case -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
