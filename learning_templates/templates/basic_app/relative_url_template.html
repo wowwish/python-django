@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- We can replace the hardcoded URL path in a href with a URL template.
+    For Example: -->
+<!-- <a href="basicapp/thankyou">Thanks</a> -->
+<!-- can be easily changed to: -->
+
+<!-- <a href="\{\% url 'thanku' \%\}">Thanks</a> when name='thanku' is in the urls.py file -->
+<!-- OR, it can be directly referenced direcly like this: -->
+<!-- <a href="\{\% url 'basicapp.views.thanku' \%\}">Thanks</a> in Django 2.0 -->
+<!-- For Django 3.0, we can add the variable 'app_name' inside the urls.py file and set this variable to a string
+    that is the same as your app name. Then, use: -->
+<!-- <a href="\{\% url 'basicapp:thanku' \%\}">Thanks</a> -->
+<!-- Using Templates for relative URLs will help in building multi-application projects -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>WELCOME TO RELATIVE URL TEMPLATES</h1>
+    <!-- app_name from urls.py of the app that is used for template tagging -->
+    <a href="{% url 'basic_app:other' %}">THE OTHER PAGE</a> ,<!-- Link to user-created app's page name -->
+    <a href="{% url 'admin:index' %}">LINK TO ADMIN</a> <!-- Link to the admin app's page name -->
+    <a href="{% url 'index' %}">LINK TO INDEX</a> <!-- Link to Project's index page. -->
+</body>
+</html>
