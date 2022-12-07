@@ -1,4 +1,4 @@
-"""learning_users URL Configuration
+"""advcbv URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -19,8 +19,7 @@ from basic_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('basic_app/', include('basic_app.urls')),
-    path('logout/', views.user_logout, name='logout'),
-    path('special/', views.special, name='special'),
+    # path('', views.CBView.as_view()), # Class-Based Views
+    path('', views.IndexView.as_view()), # Class-Based Views
+    path('basic_app/', include('basic_app.urls', namespace='basic_app'))
 ]

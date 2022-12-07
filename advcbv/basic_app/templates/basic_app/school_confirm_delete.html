@@ -1,0 +1,13 @@
+{% extends 'basic_app/basic_app_base.html' %}
+{% block body_block %}
+    <h1>Delete {{ school.name }}?</h1> <!-- 'school' is the default context object name for the 'School' model 
+    created by the DeleteView as well, just like the default context object name in other generic CBV -->
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Delete">
+        <a href="{% url 'basic_app:detail' pk=school.pk %}">Cancel</a> <!-- Return the user to the detail page
+        of the school when they cancel the deletion of the 'School' instance. Here, we send the user back to 
+        the detail page of the school which they intended to delete, using its primary key from the context object
+        (which is passed as an URL argument here) -->
+    </form>
+{% endblock body_block %}

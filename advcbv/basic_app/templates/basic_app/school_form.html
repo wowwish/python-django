@@ -1,0 +1,20 @@
+{% extends 'basic_app/basic_app_base.html' %}
+{% block body_block %}
+    <h1>
+        <!-- Check if an instance of the primary key already exists. If it exists already, move to instance update view.
+        If it does not exist, show the Model instance creation view. -->
+        <!-- For a non-existent model instance, 'form.instance.pk' will be 'None'. Even model instance that are
+        yet to be saved to database will have a default primary key assigned by Django. -->
+        {% if not form.instance.pk %}
+        Create School <!-- h1 header innerText -->
+        {% else %}
+        Update School <!-- h1 header innterText -->
+        {% endif %}
+    </h1>
+
+    <form method="POST">
+        {% csrf_token %} <!-- To secure POST requests -->
+        {{ form.as_p }} <!-- Default Form generated from the CreateView Class we made -->
+        <input type="submit" class="btn btn-primary" value="Submit">
+    </form>
+{% endblock body_block %}

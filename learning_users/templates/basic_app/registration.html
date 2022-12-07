@@ -1,0 +1,22 @@
+{% extends 'basic_app/base.html' %} <!-- Inherit the base template -->
+{% load static %} <!-- Load Static Files -->
+
+{% block body_block %}
+<div class="container py-4">
+    <div class="p-5 mb-4 bg-light rounded-3">
+    {% if registered %}
+        <h1>Thank You for registering!</h1>
+    {% else %}
+        <h1>Register Here!</h1>
+        <h3>Fill out the Form:</h3>
+        <form action="" method="post" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" for multi
+        media data like images -->
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+            <input type="submit" name="" value="Register">
+        </form>
+    {% endif %}
+    </div>
+</div>
+{% endblock body_block %}

@@ -1,0 +1,23 @@
+{% extends 'basic_app/basic_app_base.html' %}
+{% block body_block %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1>Welcome to the School detail Page!</h1>
+        <h2>School Details:</h2>
+        <p>Name: {{school_detail.name}}</p>
+        <p>Principal: {{school_detail.principal}}</p>
+        <p>Location: {{school_detail.location}}</p>
+        <h3>Students: </h3>
+        <!-- school_detail.students.all() returns all the 'Students' records related to this 'School' record -->
+        {% for student in school_detail.students.all %}
+        <p>{{student.name}} who is {{student.age}} years old.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+    <!-- Link to Update page for this 'School' model instance. The primary key for this instance is provided as
+    argument to the url. So, 'pk' in the Url will be updated with the 'school_detail.pk' value -->
+    <p><a class="btn btn-warning" href="{% url 'basic_app:update' pk=school_detail.pk %}">Update</a></p>
+</div>
+{% endblock body_block %}

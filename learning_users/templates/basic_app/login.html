@@ -1,0 +1,16 @@
+{% extends 'basic_app/base.html' %}
+{% block body_block %}
+<div class="container py-4">
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <h1>Please Login</h1>
+        <form action="{% url 'basic_app:user_login' %}" method="POST">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" placeholder="Enter Username">
+            <label for="password"></label>
+            <input type="password" name="password" placeholder="Enter Password">
+            <input type="submit" name="" value="Login">
+        </form>
+    </div>
+</div>
+{% endblock body_block %}

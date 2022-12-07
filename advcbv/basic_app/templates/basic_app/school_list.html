@@ -1,0 +1,12 @@
+{% extends 'basic_app/basic_app_base.html' %}
+
+{% block body_block %}
+<h1>Welcome to the list of all schools!</h1>
+<ol>
+    <!-- \{% for school in school_list %\} -->
+    {% for school in schools %}
+    <!-- using the in-build primary key for records of the school model (the '.id' field) -->
+    <h2><li><a href="{{school.id}}">{{school.name}}</a></li></h2>
+    {% endfor %}
+</ol>
+{% endblock body_block %}
