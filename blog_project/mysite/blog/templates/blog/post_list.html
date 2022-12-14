@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="centerstage">
+    {% for post in post_list %}  <!-- Remember: <model_name>_list is the built-in context created by ListView class -->
+        <div class="post">
+            <h1><a href="{% url 'post_detail' pk=post.pk %}"></a>{{ post.title }}</h1> 
+            <!-- link to url named 'post_detail' with the URL parameter 'pk' set to the post attribute 'pk' -->
+            <div class="date">
+                <p>Published on: {{post.published|date:"D M Y"}}</p> <!-- Use template filter to format date -->
+            </div>
+            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{post.approve_comments.count }}</a> <!-- Approved comment count for the post -->
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}

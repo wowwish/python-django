@@ -94,6 +94,7 @@ class SchoolUpdateView(UpdateView):
 # Generic Model View - DeleteView
 class SchoolDeleteView(DeleteView):
     model = models.School
+    # REFER: https://docs.djangoproject.com/en/4.1/ref/urlresolvers/
     success_url = reverse_lazy('basic_app:list') # The URL to redirect the user to upon successful deletion
     # of a Model instance (an instance/record of School)
     # The default HTML template file expected by DeleteView is 'basic_app/school_confirm_delete.html'

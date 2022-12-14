@@ -14,8 +14,9 @@
     <h1>Fill out the Form!</h1>
     <div class="container">
         <form method="POST">
+            <!-- form.as_p injects your form content as paragraph tags -->
             {{ form.as_p }}
-            {% csrf_token %}
+            {% csrf_token %} <!-- CSRF token required to validate POST requests - added security -->
             <input type="submit" class="btn btn-primary" value="Submit">
         </form>
     </div>

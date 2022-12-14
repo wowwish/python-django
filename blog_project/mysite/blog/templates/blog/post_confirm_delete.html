@@ -1,0 +1,8 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete {{object}}</p> <!-- 'object' in an in-built context created by the DeleteView CBV in Django -->
+        <input type="submit" class="btn btn-danger" value="Confirm">
+    </form>
+{% endblock content %}

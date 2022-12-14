@@ -33,7 +33,7 @@
 # SAMPLE FORM TEMPLATE TAGGING:
 # <div class = "container">
 #     <form method="POST">
-#         {{ form.as_p }} <!-- Puts the form elements inside a paragraph tag for nice formatting. Check django docs for other ways of including forms for example in a table-->
+#         {{ form.as_p }} <!-- Puts the form elements inside paragraph tags for nice formatting. Check django docs for other ways of including forms for example in a table-->
 #         {% csrf_token %} <!-- cross-site request forgery token to secure HTTP POST requests from Form -->
 #         <input type="submit" class="btn btn-primary" value="Submit">
 #     </form>
