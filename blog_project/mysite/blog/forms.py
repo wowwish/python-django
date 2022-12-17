@@ -13,7 +13,7 @@ class PostForm(forms.ModelForm): # A ModelForm for Model instance creation via H
         widgets = {
             # You can also set HTML element attributes such as CSS 'classes' for the HTML tag of the form fields
             'title': forms.TextInput(attrs={'class': 'textinputclass'}),
-            'text': forms.Textarea(attrs={'class': 'editor ck-editor-textarea postcontent'}) # Add the class name 'editor' to the text area
+            'text': forms.Textarea(attrs={'class': 'editor ck-editor-textarea postcontent', 'id': 'editor'}) # Add the class name 'editor' to the text area
         }
 
 class CommentForm(forms.ModelForm):
@@ -23,6 +23,6 @@ class CommentForm(forms.ModelForm):
         # Connect 'widgets' to the Form fields to format them
         widgets = {
             'author': forms.TextInput(attrs={'class': 'textinputclass'}),
-            'text': forms.Textarea(attrs={'class': 'editor ck-editor-textarea'})
+            'text': forms.Textarea(attrs={'class': 'editor ck-editor-textarea', 'id': 'editor'})
         }
 
