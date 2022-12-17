@@ -9,8 +9,8 @@ class Post(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE) # Set up such that super-users with admin access can only author posts
     title = models.CharField(max_length=200)
     text = models.TextField()
-    create_date = models.DateTimeField(default=timezone.now()) # Default creation date is obtained from 'timezone.now()'
-    # This calls the current date of the timezone specified in the 'settings.py' file
+    create_date = models.DateTimeField(default=timezone.now) # Default creation date is obtained from 'timezone.now()'
+    # This calls the current date of the timezone specified in the 'settings.py' file. We just pass the method name to be called here.
     published_date = models.DateTimeField(blank=True, null=True) # This field can be left blank or empty or null. (For Draft Posts)
     def publish(self):
         self.published_date = timezone.now() # When published, save publication_date to current date and time in the App timezone
@@ -27,7 +27,8 @@ class Comment(models.Model):
     post = models.ForeignKey('blog.Post', related_name='comments', on_delete=models.CASCADE) # Connect each Comment instance to an actual instance of model Post
     author = models.CharField(max_length=200) # Author of a comment may not be the same as author of a Post
     text = models.TextField()
-    create_date = models.DateTimeField(default=timezone.now()) # Set default date-time to current date and time of the App timezone
+    create_date = models.DateTimeField(default=timezone.now) # Set default date-time to current date and time of the App timezone 
+    # (by passing the 'timezone.now' method for calling)
     approved_comment = models.BooleanField(default=False) # All comments are unapproved by Default.
     def approve(self):
         self.approved_comment = True # Approve the comment

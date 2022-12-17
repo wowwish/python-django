@@ -9,7 +9,7 @@
         <a href="{% url 'post_publish' pk=post.pk %}" class="btn btn-light">Publish</a> <!-- button to link to url named 'post_publish' with the post primary key as URL parameter -->
     {% endif %}
 
-    <p class="postcontent">{{ post.title|safe|linebreaksbr }}</p> <!-- safe and linebreaksbr are template filter to 
+    <p class="postcontent">{{ post.text|safe|linebreaksbr }}</p> <!-- safe and linebreaksbr are template filter to 
     properly render html tags like <b> and <br> without adding them as part of the text -->
 
     {% if user.is_authenticated %}
