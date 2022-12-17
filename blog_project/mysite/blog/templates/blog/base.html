@@ -13,8 +13,9 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
         type="text/css" media="screen" charset="utf-8">
     <!-- Custom CSS -->
-    <!-- Medium Style Editor -->
     <link rel="stylesheet" href="{%  static 'css/blog.css' %}">
+    <!-- CKEditor5 -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
     <!-- FontAwesome Styling Kit -->
     <script src="https://kit.fontawesome.com/c3260f78d4.js" crossorigin="anonymous"></script>
     <!-- Fonts -->
@@ -47,8 +48,8 @@
                     </li>
                 </ul>
                 <nav class="navbar bg-light navbar-expand-lg">
-                    {% if user.is_authenticated %} <!-- If Authenticated User -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        {% if user.is_authenticated %} <!-- If Authenticated User -->
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'post_new' %}">New Post</a>
                         </li>
@@ -62,12 +63,11 @@
                             <a class="nav-link">Welcome: {{user.username}}</a>
                         </li>
                         {% else %}
-                        <li>
-                            <a class="nav navbar-right" href="{% url 'login' %}"><span
-                                    class="fa-solid fa-user"></span></a>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-right fa-solid fa-user" href="{% url 'login' %}"></a>
                         </li>
+                        {% endif %}
                     </ul>
-                    {% endif %}
                 </nav>
             </div>
         </div>

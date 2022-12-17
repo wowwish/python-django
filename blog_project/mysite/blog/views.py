@@ -80,7 +80,7 @@ class DraftListView(LoginRequiredMixin, ListView):
     # REFER: https://docs.djangoproject.com/en/4.1/topics/db/managers/
     def get_queryset(self):
         # get the un-published post objects, order by the Date of creation of the 'Post' model instance
-        return Post.objects.filter(published_date__isnull=True).order_by('created_date')
+        return Post.objects.filter(published_date__isnull=True).order_by('create_date')
 
 
 ####################################################################################
@@ -116,9 +116,9 @@ def add_comment_to_post(request, pk):
             comment.post = post # The CommentForm does not have the 'post' field. Hence, we need to connect it to the Post instance
             comment.save()
             return redirect('post_detail', pk=post.pk) # Redirects user to the resolved URL upon creating the Model instance from the form data.
-        else:
-            form = CommentForm()
-        return render(request, 'blog/comments_form.html', {'form': form})
+    else:
+        form = CommentForm()
+        return render(request, 'blog/comment_form.html', {'form': form})
 
 @login_required
 def comment_approve(request, pk):
@@ -138,6 +138,6 @@ def comment_remove(request, pk):
 
 @login_required
 def post_publish(request, pk):
-    post = get_object_or_404(Post, pk) # Get the post instance using its primary key
+    post = get_object_or_404(Post, pk=pk) # Get the post instance using its primary key
     post.publish() # Publish the post instance using the publish() method described in the 'Post' model
     return redirect('post_detail', pk=post.pk) # Redirect after successful publishing of post to the detail page of the newly created Post

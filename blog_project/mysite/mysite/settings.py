@@ -122,6 +122,9 @@ STATIC_ROOT = BASE_DIR / 'static'
 # URL to Redirect the User When they LogIn
 LOGIN_REDIRECT_URL = '/'
 
+# URL to Redirect the User when they LogOut
+LOGOUT_REDIRECT_URL = '/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

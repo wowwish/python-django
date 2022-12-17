@@ -155,4 +155,4 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Set up the Login Page Template file
-LOGN_URL = '/basic_app/user_login' 
+LOGIN_URL = '/basic_app/user_login' 
