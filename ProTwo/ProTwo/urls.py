@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from django.conf import settings
 from AppTwo import views
 
 urlpatterns = [
@@ -23,3 +24,10 @@ urlpatterns = [
     # path('', views.index, name='index'),
     path('', include('AppTwo.urls')),
 ]
+
+# Add the 'debug-toolbar' app URLs to our project (only when the app is run in Debug mode (DEBUG = True in settings.py))
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls))
+    ] + urlpatterns

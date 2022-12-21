@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %} <!-- For Pretty formatting of forms using Bootstrap 5 -->
+
+{% block content %}
+    <div class="container">
+        <h1>Log In</h1>
+        <form action="" method="POST">
+            {% csrf_token %} <!-- for security of POST requests -->
+            {% bootstrap_form form %} <!-- using django-bootstrap-v5 to create a pretty form -->
+            <input type="submit" value="Log In" name="" class="btn btn-light">
+        </form>
+    </div>
+{% endblock content %}
