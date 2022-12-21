@@ -1,0 +1,18 @@
+<!-- CUSTOMIZE THE ADMIN PAGE BY OVERRIDE THE DEFAULT BUILT-IN 'base_site.html' IN DJANGO -->
+<!-- REFER THE DJANGO GITHUB REPO AND MIMIC ITS DIRECTORY STRUCTURE AS WELL AS TEMPLATE STRUCTURE -->
+<!-- https://github.com/django/django/blob/main/django/contrib/admin/templates/admin/base_site.html -->
+<!-- BE CAREFUL TO NOT BREAK ANYTHING IN THE WEBSITE BY TAMPERING WITH THE ADMIN TEMPLATES -->
+
+{% extends "admin/base.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<!-- THE ADMIN PAGE HEADER CAN BE MODIFIED HERE -->
+<h1 id="site-name"><a href="{% url 'admin:index' %}">VIDEO STORE ADMIN</a></h1>
+{% if user.is_anonymous %}
+  {% include "admin/color_theme_toggle.html" %}
+{% endif %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
