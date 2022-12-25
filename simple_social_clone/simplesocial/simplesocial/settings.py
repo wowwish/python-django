@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     # This library is used for pretty formatting of forms and provides additional template tags for using Bootstrap5
     'bootstrap5',
     'accounts',
-
+    'groups',
+    'posts',
 ]
 
 MIDDLEWARE = [
@@ -120,7 +121,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]

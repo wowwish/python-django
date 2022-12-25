@@ -1,1 +1,42 @@
 <!-- default template for the built-in ListView class-based-view for the 'Post' model -->
+{% extends 'posts/post_base.html' %}
+{% block prepost %}
+    <div class="col-md-4">
+        <!-- REFER: https://docs.djangoproject.com/en/4.1/topics/db/queries/#related-objects -->
+        {% if request.user.is_authenticated %} <!-- if the user requesting the 'Post' model instance ListView is authenticated-->
+        <div class="card card-with-shadow">
+            <div class="content">
+                <h5 class="title">Your Groups</h5>
+                <ul class="list-unstyled">
+                    {% for member_group in user_groups %} <!-- context dictionary from 'get_context_data()' contains 'user_groups' -->
+                        <li class="group li-with-bullet">
+                            <!-- link to the URL of the group from the 'MembershipGroup' model instances related to the user -->
+                            <a href="{% url 'groups:single' slug=member_group.group.slug %"></a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        <div class="card-with-shadow">
+            <div class="content">
+                <h5 class="title">All Groups</h5>
+                <ul class="list-unstyled">
+                    {% for other_group in all_groups %} <!-- all_groups comes from 'get_context_data()' method implementation -->
+                    <li class="group li-with-bullet">
+                        <a href="{% url 'groups:single' slug=other_group.slug %}"></a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock prepost %}
+
+{% block post_content %}
+    <div class="col-md-8">
+        {% for post in post_list %}
+            {% include 'posts/_post.html' %} <!-- injection content of another HTML file -->
+        {% endfor %}
+    </div>
+{% endblock post_content %}

@@ -9,15 +9,18 @@ urlpatterns = [
     # corresponds to a 'localhost:8000/basic_app/<school_primary_key_number>/'.
     # This Primary Key number is sent as a URL Keyword Argument to the 'views.SchoolUpdateView' view under the
     # variable name 'pk'
+    # REFER: # REFER: https://docs.djangoproject.com/en/4.1/topics/http/urls/#path-converters
     path('create/', views.SchoolCreateView.as_view(), name='create'),
     path('update/<int:pk>', views.SchoolUpdateView.as_view(), name='update'), # 'pk' stands for Primary Key
     # 'int:' in '<int:pk>' indicates that the primary key is of type Integer. This path matches any route that
     # corresponds to a 'localhost:8000/basic_app/update/<school_primary_key_number>/'.
     # This Primary Key number is sent as a URL Keyword Argument to the 'views.SchoolUpdateView' view under the
     # variable name 'pk'
+    # REFER: # REFER: https://docs.djangoproject.com/en/4.1/topics/http/urls/#path-converters
     path('delete/<int:pk>', views.SchoolDeleteView.as_view(), name='delete'), # 'pk' stands for Primary Key
     # 'int:' in '<int:pk>' indicates that the primary key is of type Integer. This path matches any route that
     # corresponds to a 'localhost:8000/basic_app/delete/<school_primary_key_number>/'.
     # This Primary Key number is sent as a URL Keyword Argument to the 'views.SchoolDeleteView' view under the
     # variable name 'pk'
+    # REFER: # REFER: https://docs.djangoproject.com/en/4.1/topics/http/urls/#path-converters
 ]

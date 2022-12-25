@@ -1,1 +1,12 @@
 <!-- Default template for the CreateView class-based-view to create an instance of 'Post' model-->
+{% extends 'posts/post_base.html' %}
+{% load bootstrap5 %} <!-- for pretty forms styled with Bootstrap v5 -->
+
+{% block post_content %}
+    <h4>Create a new Post</h4>
+    <form id="postForm" action="{% url 'posts:create' %}" method="POST">
+        {% csrf_token %} <!-- for secure POST requests -->
+        {% bootstrap_form form %} <!-- pretty formatting of the form -->
+        <input type="submit" class="btn btn-primary btn-lg" value="Post">
+    </form>
+{% endblock post_content %}

@@ -1,1 +1,7 @@
 <!-- default template for the built-in DetailView class-based-view for the 'Post' model -->
+{% extends 'posts/post_base.html' %}
+{% block post_content %}
+    <div class="col-md-8">
+        {% include 'posts/_post.html' %} <!-- HTML content from another file is injected here-->
+    </div>
+{% endblock post_content %}

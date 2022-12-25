@@ -24,5 +24,13 @@ urlpatterns = [
     # We also give an application/instance namespace for the URLs being included here as 'accounts'
     path('accounts/', include('django.contrib.auth.urls')), # also include the in-built authorization URLs from Django in 'accounts/' path
     path('test/', views.TestPage.as_view(), name='test'), 
-    path('thanks/', views.ThanksPage.as_view(), name='thanks')
+    path('thanks/', views.ThanksPage.as_view(), name='thanks'),
+    # connect the URLs from the 'postss' app to the project
+    # We also give an application/instance namespace for the URLs being included here as 'posts'
+    # This will make the 'posts' app urls to be accessible as 'posts:create', 'posts:delete' etc.
+    path('posts/', include('posts.urls', namespace='posts')),
+    # connect the URLs from the 'groups' app to the project
+    # We also give an application/instance namespace for the URLs being included here as 'groups'
+    # This will make the 'groups' app urls to be accessible as 'groups:join', 'groups:leave' etc.
+    path('groups/', include('groups.urls', namespace='groups')),
 ]

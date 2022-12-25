@@ -1,1 +1,37 @@
 <!-- Default template for the DetailView class-based-view to create an instance of 'Group' model-->
+{% extends "groups/group_base.html" %}
+{% block pregroup %}
+<!-- The context dictionary for 'group' comes from the 'Group' model for this DetailView -->
+<h1>{{group.name}}</h1> 
+<h2>Member Count: {{group.members.count}}</h2> <!-- get all the users with membershio of the group using the 
+    'related_name' attribute 'members' and count them -->
+<div class="content">
+    {% if user in group.members.all %} <!-- if this user happens to be inside the array of member instances -->
+    <a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-lg btn-warning"><span class="fa-solid fa-circle-minus">
+        Leave
+    </span></a> <!-- provide the member an option to leave the group -->
+    {% else %} <!-- If this user is not inside the array of member instances of the group -->
+    <a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-lg btn-primary"><span class="fa-solid fa-user-plus"></span>
+        Join
+    </a> <!-- provide the member an option to subscribe to the group -->
+    {% endif %}
+</div>
+{% endblock pregroup %}
+
+{% block group_content %}
+    <div class="col-md-8">
+        <!-- The group context dictionary references a Group model instance here in the DetailView. The 'users' 
+        'related_name' attribute which was set to 'posts' for the 'group' context is used to access all the posts 
+        that are part of this group instance -->
+        {% if group.posts.count < 1 %} <!-- If the group has no posts yet -->
+            <h2>No posts in this group yet!</h2>
+        {% else %}
+            {% for post in group.posts.all %} <!-- group.posts.all returns a iterable queryset of all post instances associated with this group instance -->
+                {% include 'posts/_post.html' %} <!-- The 'include' template tag is very similar to the 'extends-block' template tag.
+                This tag simply replaces itself with the HTML content from the template referenced in it. -->
+                <!-- REFER: https://docs.djangoproject.com/en/4.1/ref/templates/builtins/#include -->
+                <!-- The 'include' tag template reference HTML file is named starting with an '_' to signify that it contains content to be injected into another HTML file-->
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock group_content %}

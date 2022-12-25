@@ -1,1 +1,53 @@
 <!-- Default template for the ListView class-based-view to create an instance of 'Group' model-->
+{% extends "groups/group_base.html" %}
+
+{% block pregroup %}
+    <div class="col-md-4">
+        <div class="content">
+            {% if user.is_authenticated %} <!-- The 'user' context comes from the ListView class created for the Group model instance -->
+                <h2>Welcome Back!
+                    <a href="{% url 'posts:for_user' username=user.username %}">
+                        @{{user.username}} <!-- built-in user model's 'username' field -->
+                    </a> <!-- link to the user model instance's user profile URL using its 'username' attribute as URL parameter -->
+                </h2>
+            {% endif %}
+            <h2>Groups</h2>
+            <p>Welcome to the groups page!</p>
+        </div>
+        {% if user.is_authenticated %} <!-- If the user is authenticated, allows them to create new groups by directing them to the group CreateView -->
+            <a href="{% url 'groups:create' %}" class="btn btn-primary btn-md">
+                <span class="fa-solid fa-users"></span> Create New Group!
+            </a>
+        {% endif %}
+    </div>
+{% endblock pregroup %}
+
+{% block group_content %}
+    <div class="col-md-8">
+        <div class="list-group">
+            {% for group in object_list %} <!-- 'object_list' is list of group instances. This context is provided by default in ListView (ListGroups)-->
+            <!-- link to the single group instance detail view using the slugified group name as URL parameter -->
+                <a href="{% url 'groups:single' slug=group.slug %}" class="list-group-item">
+                    <h3 class="title list-group-item-heading">{{group.name}}</h3>
+                    <div class="list-group-item-text container-fluid">
+                        {{group.description_html|safe}} <!-- using 'safe' template filter to render HTML content in text properly. -->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <!--REFER: https://docs.djangoproject.com/en/4.1/ref/templates/language/#accessing-method-calls -->
+                                <span class="">{{group.members.count}}</span> <!-- user membership count for the group model instance -->
+                                member{{group.members.count|pluralize}} <!-- REFER: https://docs.djangoproject.com/en/4.1/ref/templates/builtins/#pluralize
+                                to check what the template filter 'pluralize' does (it returns a plural suffix if group members > 1). -->
+                            </div>
+                            <div class="col-md-4">
+                                <!--REFER: https://docs.djangoproject.com/en/4.1/ref/templates/language/#accessing-method-calls -->                                
+                                <span class="">{{group.Posts.count}}</span> <!-- using relation name 'Posts' as defined  
+                                in the 'User' model allows us to get the 'Post' model instances asociated with the 'Group' instance -->
+                                post{{group.posts.count|pluralize}} <!-- 'pluralize' template filter returns a plural suffix if groups posts > 1-->
+                            </div>
+                        </div>
+                    </div> 
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock group_content %}

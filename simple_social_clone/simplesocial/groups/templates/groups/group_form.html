@@ -1,1 +1,11 @@
 <!-- Default template for the CreateView class-based-view to create an instance of 'Group' model-->
+{% extends 'groups/group_base.html' %}
+{% load bootstrap5 %} <!-- pretty forms from bootstrap5 app that we included in settings.py -->
+{% block group_content %}
+    <h4>Create a new group!</h4>
+    <form action="{% url 'groups:create' %}" method="POST" id="GroupForm">
+        {% csrf_token %}
+        {% bootstrap_form form %} <!-- pretty formatting of the form using the installed bootstrap5 app features -->
+        <input type="submit" class="btn btn-lg btn-primary" value="Create">
+    </form>
+{% endblock group_content %}
